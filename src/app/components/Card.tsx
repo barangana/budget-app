@@ -3,6 +3,7 @@
 import React from 'react'
 
 //TODO: Add date for the props
+//The categories should probably be placeholders for images
 
 interface CardProps {
   title: String
@@ -14,11 +15,15 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, amount, tag, category }) => {
   return (
-    <div className='border mt-12'>
-      <div>{title}</div>
-      <div>amount: {amount}</div>
-      <div>tags:{tag}</div>
-      <div>category: {category}</div>
+    <div className='flex justify-between px-10 py-4 border mt-12'>
+      <div>
+        <div>{title}</div>
+        <div>category: {category}</div>
+      </div>
+      <div className='flex flex-row justify-between'>
+        <div className=''>${amount}</div>
+        <div className=''>date</div>
+      </div>
     </div>
   )
 }
