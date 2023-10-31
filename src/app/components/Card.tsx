@@ -15,14 +15,16 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, amount, tag, category }) => {
   return (
-    <div className='flex justify-between px-10 py-4 border mt-12'>
+    <div className='flex justify-between px-10 py-4 border mt-12 bg-blue-300'>
       <div>
         <div>{title}</div>
         <div>category: {category}</div>
+        <div>date: </div>
       </div>
-      <div className='flex flex-row justify-between'>
-        <div className=''>${amount}</div>
-        <div className=''>date</div>
+      <div className='flex'>
+        <div className='px-2'>amount</div>
+        <button>hello</button>
+        <button>hello</button>
       </div>
     </div>
   )
