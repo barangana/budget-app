@@ -21,10 +21,12 @@ const Card: React.FC<CardProps> = ({ title, amount, tag, category }) => {
         <div>category: {category}</div>
         <div>date: </div>
       </div>
-      <div className='flex'>
-        <div className='px-2'>amount</div>
-        <button>hello</button>
-        <button>hello</button>
+      <div className='flex py-6'>
+        <div className='px-4'>amount: {amount}</div>
+        <div>
+          <button className='px-2'>icon</button>
+          <button className='px-2'>icon</button>
+        </div>
       </div>
     </div>
   )
