@@ -1,8 +1,18 @@
-import { ReactNode } from 'react'
+interface MaxWidthWrapperProps {
+  children: React.ReactNode
+  extraClassName?: String
+}
 
-const MaxWidthWrapper = ({ children }: { children: ReactNode }) => {
+const MaxWidthWrapper: React.FC<MaxWidthWrapperProps> = ({
+  children,
+  extraClassName,
+}) => {
   return (
-    <div className='mx-auto w-full max-w-screen-xl px-2.5 md:px-20'>
+    <div
+      className={`mx-auto w-full max-w-screen-xl px-2.5 md:px-20 ${
+        extraClassName || ''
+      }`}
+    >
       {children}
     </div>
   )
