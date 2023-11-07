@@ -1,6 +1,8 @@
 // This component should take in title, amount spent, tag, categories and date
 
 import React from 'react'
+import { Button } from './ui/button'
+import { Pencil, Trash } from 'lucide-react'
 
 //TODO: Add date for the props
 //The categories should probably be placeholders for images
@@ -15,18 +17,21 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, amount, tag, category }) => {
   return (
-    <div className='flex justify-between px-10 py-4 border mt-12 bg-blue-300'>
-      <div>
-        <div>{title}</div>
+    <div className='flex justify-between px-12 border mt-12 bg-blue-300 rounded-xl'>
+      <div className='py-4'>
+        <div className='font-bold'>{title}</div>
         <div>category: {category}</div>
         <div>date: </div>
       </div>
-      <div className='flex py-6'>
-        <div className='px-4'>amount: {amount}</div>
-        <div>
-          <button className='px-2'>icon</button>
-          <button className='px-2'>icon</button>
-        </div>
+      {/* TODO: Fix this flex properly */}
+      <div className='flex py-8'>
+        <div className='px-10 py-2 font-bold'>amount</div>
+        <Button className='mx-2'>
+          <Pencil className='h-4 w-4' />
+        </Button>
+        <Button variant='destructive'>
+          <Trash className='h-4 w-4' />
+        </Button>
       </div>
     </div>
   )
