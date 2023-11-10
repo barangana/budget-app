@@ -17,7 +17,10 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, amount, tag, category }) => {
   return (
-    <div className='flex justify-between px-12 border mt-12 bg-blue-300 rounded-xl'>
+    <div
+      className='flex justify-between px-12 border mt-12 rounded-xl'
+      color='background'
+    >
       <div className='py-4'>
         <div className='font-bold'>{title}</div>
         <div>category: {category}</div>
