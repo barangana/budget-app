@@ -1,4 +1,5 @@
 // This component should take in title, amount spent, tag, categories and date
+'use client'
 
 import React from 'react'
 import { Button } from './ui/button'
@@ -16,6 +17,17 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, amount, tag, category }) => {
+  const handleDelete = () => {
+    //TODO: Add delete functionality
+    // takes in id of the budget entry
+    // create the delete function on the backend
+    // refresh state or page so it is seamless
+  }
+
+  const handleEdit = () => {
+    //TODO: Add edit functionality
+  }
+
   return (
     <div
       className='flex justify-between px-12 border mt-12 rounded-xl'
@@ -32,7 +44,7 @@ const Card: React.FC<CardProps> = ({ title, amount, tag, category }) => {
         <Button className='mx-2'>
           <Pencil className='h-4 w-4' />
         </Button>
-        <Button variant='destructive'>
+        <Button variant='destructive' onClick={() => handleDelete()}>
           <Trash className='h-4 w-4' />
         </Button>
       </div>
