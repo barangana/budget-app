@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import Card from './Card'
@@ -9,11 +11,11 @@ import { trpc } from '../_trpc/client'
 const Dashboard = async () => {
   const expenses = await db.expenses.findMany()
 
-  // fix this TRPC error
-  // github.com/TanStack/query/issues/6186
-  // const test = trpc.expenseList.useQuery()
+  // fix this bug where data shows undefined
+  // const { data } = trpc.expenseList.useQuery()
+  // console.log(data)
 
-  https: return (
+  return (
     <MaxWidthWrapper>
       <div className='py-8'>
         <div>Hi, name</div>
