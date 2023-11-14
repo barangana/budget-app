@@ -2,13 +2,18 @@ import React from 'react'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import Card from './Card'
 import { db } from '../db'
+import { trpc } from '../_trpc/client'
 
 //TODO: Add dynamic data such as name, balance and pass the props to card.
 
-const Dashboard = () => {
-  // test this line of code 
-  // const user = await db.user.findMany()
-  return (
+const Dashboard = async () => {
+  const expenses = await db.expenses.findMany()
+
+  // fix this TRPC error
+  // github.com/TanStack/query/issues/6186
+  // const test = trpc.expenseList.useQuery()
+
+  https: return (
     <MaxWidthWrapper>
       <div className='py-8'>
         <div>Hi, name</div>
@@ -16,10 +21,15 @@ const Dashboard = () => {
       </div>
       <div className='py-8 bg-red-500'>FILTERS</div>
       <div className='float-right'>Total Value: amount</div>
-      <Card title='test' amount={0} tag='test tag' category='test category' />
-      <Card title='test' amount={0} tag='test tag' category='test category' />
-      <Card title='test' amount={0} tag='test tag' category='test category' />
-      <Card title='test' amount={0} tag='test tag' category='test category' />
+      {expenses.map((expense) => (
+        <Card
+          title={expense.name}
+          amount={expense.amount}
+          tag='test tag'
+          category={expense.category}
+          date={expense.createdAt}
+        />
+      ))}
     </MaxWidthWrapper>
   )
 }
