@@ -13,7 +13,7 @@ interface CardProps {
   amount: number
   tag: String
   category: String
-  date: Date
+  date?: Date
 }
 
 const Card: React.FC<CardProps> = ({ title, amount, tag, category, date }) => {
@@ -36,7 +36,7 @@ const Card: React.FC<CardProps> = ({ title, amount, tag, category, date }) => {
       <div className='py-4'>
         <div className='font-bold'>{title}</div>
         <div>{category}</div>
-        <div>{date.toString()}</div>
+        {/* <div>{date.toString()}</div> */}
       </div>
       {/* TODO: Fix this flex properly */}
       <div className='flex py-8'>

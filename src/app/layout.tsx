@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Budgeto',
-  description: 'Conceptualized and Developed by Adriel Barangan.',
+  description: 'Conceptualized, Designed and Developed by Adriel Barangan.',
 }
 
 export default function RootLayout({
