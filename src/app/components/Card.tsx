@@ -3,26 +3,35 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { Pencil, Trash } from 'lucide-react'
+import { trpc } from '../_trpc/client'
 
 //The categories should probably be placeholders for images
-//TODO: Fix the format of datetime with Moment.js
+//TODO: Fix the format of datetime with date-fns
 //TODO: Fix the format of amount by making it a decimal number i.e 2.00
 
 interface CardProps {
-  title: String
+  expenseId: string
+  title: string
   amount: number
-  tag: String
-  category: String
-  date?: Date
+  tag: string
+  category: string
+  date: string
 }
 
-const Card: React.FC<CardProps> = ({ title, amount, tag, category, date }) => {
-  const handleDelete = () => {
-    //TODO: Add delete functionality
-    // takes in id of the budget entry
-    // create the delete function on the backend
-    // refresh state or page so it is seamless
-  }
+const Card: React.FC<CardProps> = ({
+  title,
+  amount,
+  tag,
+  category,
+  date,
+  expenseId,
+}) => {
+  const utils = trpc.useContext()
+  const { mutate: deleteExpense } = trpc.deleteExpense.useMutation({
+    onSuccess: () => {
+      utils.expenseList.invalidate()
+    },
+  })
 
   const handleEdit = () => {
     //TODO: Add edit functionality
@@ -36,7 +45,7 @@ const Card: React.FC<CardProps> = ({ title, amount, tag, category, date }) => {
       <div className='py-4'>
         <div className='font-bold'>{title}</div>
         <div>{category}</div>
-        {/* <div>{date.toString()}</div> */}
+        <div>{date?.toString()}</div>
       </div>
       {/* TODO: Fix this flex properly */}
       <div className='flex py-8'>
@@ -44,7 +53,10 @@ const Card: React.FC<CardProps> = ({ title, amount, tag, category, date }) => {
         <Button className='mx-2'>
           <Pencil className='h-4 w-4' />
         </Button>
-        <Button variant='destructive' onClick={() => handleDelete()}>
+        <Button
+          variant='destructive'
+          onClick={() => deleteExpense({ id: expenseId })}
+        >
           <Trash className='h-4 w-4' />
         </Button>
       </div>

@@ -4,9 +4,9 @@ import React from 'react'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import Card from './Card'
 import { trpc } from '../_trpc/client'
+import Skeleton from 'react-loading-skeleton'
 
 //TODO: Add dynamic data such as name, balance and pass the props to card.
-//TODO: Add skeleton loading
 //TODO: Add empty "is empty div"
 
 const Dashboard = () => {
@@ -19,22 +19,28 @@ const Dashboard = () => {
         <div>Balance</div>
       </div>
       <div className='py-8 bg-red-500'>FILTERS</div>
-      <div className='float-right'>Total Value: amount</div>
-
+      <div className='float-right'>
+        {expenses?.length !== 0 && 'total amount'}
+      </div>
       {expenses && expenses.length !== 0 ? (
         expenses?.map((expense) => (
           <Card
+            key={expense.id}
+            expenseId={expense.id}
             title={expense.name}
             amount={expense.amount}
             tag='test tag'
             category={expense.category}
-            // date={expense.createdAt}
+            date={expense.createdAt}
           />
         ))
       ) : isLoading ? (
-        <div>hello</div>
+        <Skeleton height={100} className='mt-6 px-12 rounded-xl' count={3} />
       ) : (
-        <div>hello</div>
+        <div>
+          <h3>its empty around here</h3>
+          <p>let&apos;s start budgeting</p>
+        </div>
       )}
     </MaxWidthWrapper>
   )

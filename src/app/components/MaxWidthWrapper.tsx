@@ -1,6 +1,6 @@
 interface MaxWidthWrapperProps {
   children: React.ReactNode
-  extraClassName?: String
+  extraClassName?: string
 }
 
 const MaxWidthWrapper: React.FC<MaxWidthWrapperProps> = ({
