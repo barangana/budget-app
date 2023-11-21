@@ -7,7 +7,10 @@ export const appRouter = router({
   expenseList: publicProcedure.query(async () => {
     const expenses = await db.expenses.findMany()
     if (!expenses) {
-      console.log('no expenses found')
+      throw new TRPCError({
+        code: 'NOT_FOUND',
+        message: 'There were no expenses found.',
+      })
     }
     return expenses
   }),
