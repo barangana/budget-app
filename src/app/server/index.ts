@@ -19,13 +19,17 @@ export const appRouter = router({
   deleteExpense: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const file = await db.expenses.findFirst({
+      const expense = await db.expenses.findFirst({
         where: {
           id: input.id,
         },
       })
 
-      if (!file) throw new TRPCError({ code: 'NOT_FOUND' })
+      if (!expense)
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: 'There were no expenses found',
+        })
 
       await db.expenses.delete({
         where: {
@@ -33,7 +37,7 @@ export const appRouter = router({
         },
       })
 
-      return file
+      return expense
     }),
 })
 
