@@ -1,6 +1,7 @@
 import React from 'react'
 import MaxWidthWrapper from './components/MaxWidthWrapper'
 import Dashboard from './components/Dashboard'
+import Form from './components/Form'
 
 const Home = () => {
   return (
@@ -14,8 +15,9 @@ const Home = () => {
         <p className='mt-5 max-w-prose text-zinc-700 sm:text-lg'>
           welcomes you
         </p>
+        <Form />
       </MaxWidthWrapper>
-      <Dashboard />
+      {/* <Dashboard /> */}
     </>
   )
 }

@@ -39,6 +39,29 @@ export const appRouter = router({
 
       return expense
     }),
+
+  // TODO: Test this
+  createExpense: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        category: z.string(),
+        amount: z.number(),
+      })
+    )
+    .mutation(async (opts) => {
+      const { input } = opts
+      const expense = await db.expenses.create({
+        data: {
+          id: input.id,
+          name: input.name,
+          category: input.category,
+          amount: input.amount,
+        },
+      })
+      return expense
+    }),
 })
 
 export type AppRouter = typeof appRouter
