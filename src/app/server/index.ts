@@ -40,7 +40,7 @@ export const appRouter = router({
       return expense
     }),
 
-  // TODO: Test this
+  // TODO: Test this & change to private procedure eventually
   createExpense: publicProcedure
     .input(
       z.object({
