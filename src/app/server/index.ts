@@ -14,8 +14,6 @@ export const appRouter = router({
     }
     return expenses
   }),
-
-  // TODO: change this to private procedure eventually
   deleteExpense: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -44,7 +42,6 @@ export const appRouter = router({
   createExpense: publicProcedure
     .input(
       z.object({
-        id: z.string(),
         name: z.string(),
         category: z.string(),
         amount: z.number(),
@@ -54,7 +51,6 @@ export const appRouter = router({
       const { input } = opts
       const expense = await db.expenses.create({
         data: {
-          id: input.id,
           name: input.name,
           category: input.category,
           amount: input.amount,

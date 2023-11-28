@@ -17,7 +17,7 @@ const Home = () => {
         </p>
         <Form />
       </MaxWidthWrapper>
-      {/* <Dashboard /> */}
+      <Dashboard />
     </>
   )
 }

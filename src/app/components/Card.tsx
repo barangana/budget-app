@@ -4,9 +4,10 @@ import React from 'react'
 import { Button } from './ui/button'
 import { Pencil, Trash } from 'lucide-react'
 import { trpc } from '../_trpc/client'
+import { format } from 'date-fns'
 
 //The categories should probably be placeholders for images
-//TODO: Fix the format of datetime with date-fns
+
 //TODO: Fix the format of amount by making it a decimal number i.e 2.00
 
 interface CardProps {
@@ -43,9 +44,9 @@ const Card: React.FC<CardProps> = ({
       color='background'
     >
       <div className='py-4'>
-        <div className='font-bold'>{title}</div>
-        <div>{category}</div>
-        <div>{date?.toString()}</div>
+        <div className='font-bold'>name: {title}</div>
+        <div>category: {category}</div>
+        <div>date: {format(new Date(date), 'dd/MM/yyyy')}</div>
       </div>
       {/* TODO: Fix this flex properly */}
       <div className='flex py-8'>
