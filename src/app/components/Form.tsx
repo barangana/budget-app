@@ -27,13 +27,13 @@ const Form: React.FC = () => {
       <div className='flex flex-col'>
         <label>name of expense</label>
         <input
-          className='rounded-md  my-4'
+          className='rounded-md my-4'
           type='text'
           onChange={(e) => setExpense({ ...expense, name: e.target.value })}
         />
         <label>category</label>
         <input
-          className='rounded-md  my-4'
+          className='rounded-md my-4'
           type='text'
           onChange={(e) => setExpense({ ...expense, category: e.target.value })}
         />
