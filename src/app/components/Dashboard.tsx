@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import Card from './Card'
 import { trpc } from '../_trpc/client'
@@ -10,7 +10,14 @@ import Skeleton from 'react-loading-skeleton'
 //TODO: Add empty "is empty div"
 
 const Dashboard = () => {
+  const [search, setSearch] = useState<string>('')
   const { data: expenses, isLoading } = trpc.expenseList.useQuery()
+
+  const filteredSearch = expenses?.filter((expenses) =>
+    search !== ''
+      ? expenses.name.includes(search) || expenses.category.includes(search)
+      : true
+  )
 
   return (
     <MaxWidthWrapper>
@@ -18,12 +25,19 @@ const Dashboard = () => {
         <div>Hi, name</div>
         <div>Balance</div>
       </div>
-      <div className='py-8 bg-red-500'>FILTERS</div>
+      <div className='py-8 bg-red-500'>
+        <input
+          value={search}
+          className='bg-blue-50'
+          placeholder='search by name or category'
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
       <div className='float-right'>
         {expenses?.length !== 0 && 'total amount'}
       </div>
       {expenses && expenses.length !== 0 ? (
-        expenses?.map((expense) => (
+        filteredSearch?.map((expense) => (
           <Card
             key={expense.id}
             expenseId={expense.id}
