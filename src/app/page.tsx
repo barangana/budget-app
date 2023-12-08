@@ -1,8 +1,6 @@
 import React from 'react'
 import MaxWidthWrapper from './components/MaxWidthWrapper'
-import Dashboard from './components/Dashboard'
 import Form from './components/Form'
-import FormButton from './components/FormButton'
 import Hero from './components/Hero'
 
 const Home = () => {
@@ -14,10 +12,7 @@ const Home = () => {
         }
       >
         <Hero />
-        {/* <Form /> */}
       </MaxWidthWrapper>
-      <FormButton />
-      <Dashboard />
     </>
   )
 }
