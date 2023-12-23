@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from './ui/button'
+import Link from 'next/link'
 
 const Hero = () => {
   return (
@@ -18,7 +19,9 @@ const Hero = () => {
         one page. Simply start by adding your expenses and start tracking right
         away.
       </p>
-      <Button className='mt-5'>Start budgeting for free</Button>
+      <Link href='/api/auth/signin'>
+        <Button className='mt-5'>Start budgeting for free</Button>
+      </Link>
     </>
   )
 }

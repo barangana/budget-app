@@ -7,8 +7,7 @@ import { trpc } from '../_trpc/client'
 import Skeleton from 'react-loading-skeleton'
 import { Button } from '../components/ui/button'
 
-//TODO: Add dynamic data such as name, balance and pass the props to card.
-//TODO: Add empty "is empty div"
+// TODO: there's an issue with infinite loading when the data is empty
 
 const Dashboard = () => {
   const [search, setSearch] = useState<string>('')
