@@ -1,16 +1,19 @@
 import React from 'react'
 import { Button } from '../ui/button'
+import { getProviders } from 'next-auth/react'
 
-// login takes in a username and password (temporarily)
-// todo: add google provider and other providers
-// might remove email/password
+// is it necessary to have components if the forms are only used on the login pages?
+// TODO: Add the multiple providers button
 
 interface LoginInfo {
   username: string
   password: string
 }
 
-const LoginForm = () => {
+const LoginForm = async () => {
+  // const providers = await getProviders()
+  // console.log(providers)
+
   return (
     <div className='grid place-items-center h-screen'>
       <div className='p-24 rounded-lg bg-gray-900/5 ring-1 ring-inset ring-gray-900/10'>
@@ -23,6 +26,7 @@ const LoginForm = () => {
             />
             <input className='rounded-lg  px-12 py-2' placeholder='password' />
             <Button className='container mt-4'>login</Button>
+            <p>No account? Sign up</p>
           </div>
         </form>
       </div>
