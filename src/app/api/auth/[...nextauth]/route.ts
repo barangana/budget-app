@@ -13,9 +13,7 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET ?? '',
     }),
   ],
-  pages: {
-    signIn: '/login',
-  },
+  callbacks: {},
 }
 
 export const handler = NextAuth(authOptions)

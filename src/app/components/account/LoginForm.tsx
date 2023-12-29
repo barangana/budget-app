@@ -1,6 +1,8 @@
+'use client'
+
 import React from 'react'
 import { Button } from '../ui/button'
-import { getProviders } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 // is it necessary to have components if the forms are only used on the login pages?
 // TODO: Add the multiple providers button
@@ -10,9 +12,9 @@ interface LoginInfo {
   password: string
 }
 
-const LoginForm = async () => {
-  // const providers = await getProviders()
-  // console.log(providers)
+const LoginForm = () => {
+  const { data: session } = useSession()
+  console.log(session)
 
   return (
     <div className='grid place-items-center h-screen'>
@@ -26,6 +28,9 @@ const LoginForm = async () => {
             />
             <input className='rounded-lg  px-12 py-2' placeholder='password' />
             <Button className='container mt-4'>login</Button>
+            <Button className='container mt-4' onClick={() => signIn('github')}>
+              sign in with github
+            </Button>
             <p>No account? Sign up</p>
           </div>
         </form>
