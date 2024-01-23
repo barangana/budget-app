@@ -14,6 +14,7 @@ export const appRouter = router({
     }
     return expenses
   }),
+
   deleteExpense: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -34,7 +35,6 @@ export const appRouter = router({
           id: input.id,
         },
       })
-
       return expense
     }),
 
@@ -57,6 +57,32 @@ export const appRouter = router({
         },
       })
       return expense
+    }),
+
+  register: publicProcedure
+    .input(z.object({ email: z.string(), password: z.string() }))
+    .mutation(async (opts) => {
+      const { input } = opts
+      console.log(input)
+
+      // check for existing user
+      const existingUser = await db.user.findUnique({
+        where: {
+          email: input.email,
+        },
+      })
+
+      // handle the case where if there is no user in the db and if there is a user in the db
+      // add encrypted password
+      if (!existingUser) {
+        const user = await db.user.create({
+          data: {
+            email: input.email,
+            password: input.password,
+          },
+        })
+        return user
+      }
     }),
 })
 
