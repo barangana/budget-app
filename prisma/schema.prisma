@@ -8,10 +8,10 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  email    String @unique
-  password String
-  // add the expenses
+  id          String     @id @default(uuid())
+  email       String     @unique
+  password    String
+  expenseList Expenses[]
 }
 
 model Expenses {
@@ -20,4 +20,6 @@ model Expenses {
   category  String
   createdAt DateTime @default(now())
   amount    Int
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?
 }

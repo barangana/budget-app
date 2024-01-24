@@ -63,17 +63,12 @@ export const appRouter = router({
     .input(z.object({ email: z.string(), password: z.string() }))
     .mutation(async (opts) => {
       const { input } = opts
-      console.log(input)
 
-      // check for existing user
       const existingUser = await db.user.findUnique({
         where: {
           email: input.email,
         },
       })
-
-      // handle the case where if there is no user in the db and if there is a user in the db
-      // add encrypted password
       if (!existingUser) {
         const user = await db.user.create({
           data: {
@@ -83,6 +78,27 @@ export const appRouter = router({
         })
         return user
       }
+    }),
+
+  login: publicProcedure
+    .input(z.object({ email: z.string(), password: z.string() }))
+    .mutation(async (opts) => {
+      const { input } = opts
+
+      const existingUser = await db.user.findUnique({
+        where: {
+          email: input.email,
+          password: input.password,
+        },
+      })
+
+      if (!existingUser) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: `There were no users named ${input.email}`,
+        })
+      }
+      return existingUser
     }),
 })
 
