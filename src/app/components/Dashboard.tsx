@@ -6,6 +6,7 @@ import MaxWidthWrapper from './MaxWidthWrapper'
 import { Button } from './ui/button'
 import Card from './Card'
 import Skeleton from 'react-loading-skeleton'
+import FormButton from './FormButton'
 
 // TODO: there's an issue with infinite loading when the data is empty
 
@@ -59,6 +60,7 @@ const Dashboard = () => {
           <p>Let&apos;s begin your budgeting.</p>
         </div>
       )}
+      <FormButton />
     </MaxWidthWrapper>
   )
 }

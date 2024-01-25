@@ -8,18 +8,19 @@ datasource db {
 }
 
 model User {
-  id          String     @id @default(uuid())
-  email       String     @unique
-  password    String
-  expenseList Expenses[]
+  id       String     @id @default(uuid())
+  email    String     @unique
+  password String
+  expenses Expenses[]
 }
 
+// for some reason its not doing 1:M relationship. find out why
 model Expenses {
   id        String   @id @default(uuid())
   name      String
   category  String
   createdAt DateTime @default(now())
   amount    Int
-  User      User?    @relation(fields: [userId], references: [id])
+  User      User?     @relation(fields: [userId], references: [id])
   userId    String?
 }
